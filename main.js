@@ -1,36 +1,32 @@
 let specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "_", "~"];
 let subButton = document.getElementsByClassName("submit_button");
 
+//An empty string for the special characters to go into
+var buildingBlocks = "";
 
 
-
-
-
-
-
-//This function grabs the information from both textboxes and stores those values into variables after the submit button is clicked
+//This function grabs the information from both textboxes 
+//stores those values into variables after the submit button is clicked
+//Calls the next function with the inputs as its arguments
 subButton[0].addEventListener("click", function() {
-	let number = document.getElementById("tree_height").value;
+	let height = document.getElementById("tree_height").value;
 	let specChar = document.getElementById("special_character").value;
-		for (var i = 0; i < specialChar.length; i++) {
-		 	if (number < 10 && specChar === specialChar[i]) {
-		 		return preference(number, specChar);
-		 	} 
-		};
+	preference(height, specChar);
 });
 
-
-
-//Takes user input and creates a single object with two key/value properties
+//This function takes the user inputs and turns them into a single object with two key/value properties
 function preference(height, character) {
 	let treeDescription = {};
 	treeDescription.height = height;
 	treeDescription.character = character;
-	return treeDescription;
+	tree(treeDescription);
 };
 
 function tree(treeDescription) {
 	for (var i = 0; i <= treeDescription.height; i++) {
-		console.log(treeDescription.character);
+		buildingBlocks += (treeDescription.character);
+		if (i === 0 || i % 2 === 0) {	
+		console.log(buildingBlocks);
+		};
 	}
 };
