@@ -1,7 +1,3 @@
-//To be used in a function that prevents the user from submitting characters other than what is listed
-let specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "_", "~"];
-
-
 //This function grabs the information from both textboxes 
 //stores those values into variables after the submit button is clicked
 //Calls the next function with the inputs as its arguments
@@ -38,19 +34,24 @@ function tree(treeDescription) {
 	let buildingBlocks = treeDescription.character;
 	//Allows storage of decreased number of spaces 
 	let spaces = "";
-	//for loop that loops as many times as depicted by user input
-	for (let i = 0; i < treeDescription.height; i++) {
-		//Initially store in a variable a number of spaces equal to the height number minus 1
-		//Decrease the amount of spaces after each full function interval
-		for (let j = 0; j < treeDescription.height - i; j++) {
-			//logs buildingBlocks after each interval
-			spaces += " ";
+	//If statement to test whether both fields have had text input
+	if (treeDescription.character !== "" && treeDescription.height !== "") {
+		//for loop that loops as many times as depicted by user input
+		for (let i = 0; i < treeDescription.height; i++) {
+			//Initially store in a variable a number of spaces equal to the height number minus 1
+			//Decrease the amount of spaces by 1 after each full function interval
+			for (let j = 0; j < treeDescription.height - i; j++) {
+				spaces += " ";
+			}
+			//logs the stored amount of spaces and buildingBlocks after each full iteration
+			console.log(spaces + buildingBlocks);
+			//increases buildingBlocks by 2 after each full iteration
+			buildingBlocks += treeDescription.character + treeDescription.character;
+			//returns spaces to equal no spaces after each full iteration
+			spaces = "";
 		}
-		console.log(spaces + buildingBlocks);
-		//increases buildingBlocks by 2 after each iteration
-		buildingBlocks += treeDescription.character + treeDescription.character;
-		//returns spaces to equal no spaces
-		spaces = "";
+	} else {
+		alert("Both fields must have a value");
 	}
 };
 
